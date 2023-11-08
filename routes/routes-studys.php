@@ -41,3 +41,37 @@ Route::get("/sobre", function(){
 });
 
 Route::redirect("/sobre", "/empresa");
+
+Route::get("/news", function(){
+    return view("news");
+})->name("noticias");
+
+Route::get("/novidades", function(){
+    return redirect()->route("noticias");
+});
+
+Route::prefix("admin")->group(function(){
+    Route::get("dashboard", function(){
+        return "dashboard";
+    });
+    Route::get("clientes", function(){
+        return "dashboard";
+    });
+
+    Route::get("profile", function(){
+        return "dashboard";
+    });
+});
+
+Route::name("admin.")->group(function(){
+    Route::get("admin/dashboard", function(){
+        return "dashboard";
+    })->name("dashboard");
+    Route::get("admin/clientes", function(){
+        return "clientes";
+    })->name("clientes");
+
+    Route::get("admin/profile", function(){
+        return "profile";
+    })->name("profile");
+});
